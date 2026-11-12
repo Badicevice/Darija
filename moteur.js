@@ -118,7 +118,7 @@ function lex(){if(LEXC)return LEXC;const seen=new Set(),d=document.createElement
  LEXC.sort((x,y)=>x.r.localeCompare(y.r,"fr"));return LEXC}
 function lexGo(v){const t=nrm(v).split(/\s+/).filter(Boolean),all=lex(),r=all.filter(x=>t.every(w=>x.s.includes(w))),sh=r.slice(0,120);
  $("lxn").textContent=t.length?(r.length?r.length+" résultat"+(r.length>1?"s":"")+(r.length>120?" (affine ta recherche pour voir la suite)":""):"Aucun résultat."):all.length+" mots dans le cours. Tape un mot pour chercher.";
- $("lxr").innerHTML=sh.map(x=>`<div class="lx"><div><b>${x.r}</b>${x.a?` <span class="ar" lang="ar">${x.a}</span>`:""}</div><div>${x.f}</div><button class="lk" onclick="go(${x.i})">Leçon ${x.n}</button></div>`).join("")}
+ $("lxr").innerHTML=sh.map(x=>`<div class="lx"><div><b>${x.r}</b>${x.a?` <span class="ar" lang="ar">${x.a}</span>${SND(x.a)}`:""}</div><div>${x.f}</div><button class="lk" onclick="go(${x.i})">Leçon ${x.n}</button></div>`).join("")}
 const PAGES={
  lexique(){return `<div class="card"><h3>Chercher un mot</h3><input type="text" id="lx" autocomplete="off" autocapitalize="off" aria-label="Chercher un mot" placeholder="En darija ou en français…" oninput="lexGo(this.value)"><p id="lxn" class="foot" aria-live="polite"></p><div id="lxr"></div></div>`},
  revision(){const m=allQ(),now=Date.now(),ks=Object.keys(SR).filter(k=>m[k]),due=ks.filter(k=>SR[k].d<=now).length,mast=ks.filter(k=>SR[k].b>=5).length;
@@ -138,3 +138,11 @@ addEventListener("beforeinstallprompt",e=>{e.preventDefault();dp=e;$("inst").hid
 $("inst").onclick=()=>{if(dp){dp.prompt();dp=null;$("inst").hidden=true}};
 if("serviceWorker" in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register("sw.js").catch(()=>{});
 draw();
+
+// ---------- Audio (prononciation) ----------
+let SNDP=null,SNDB=null;
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".snd");if(!b)return;e.preventDefault();e.stopPropagation();
+ if(SNDP){SNDP.pause();SNDP=null}if(SNDB)SNDB.classList.remove("on");
+ const a=new Audio("audio/"+String(b.dataset.a).padStart(3,"0")+".mp3");SNDP=a;SNDB=b;b.classList.add("on");
+ const off=()=>{b.classList.remove("on");if(SNDP===a)SNDP=null};a.onended=off;a.onerror=off;
+ const p=a.play();if(p&&p.catch)p.catch(off)});

@@ -1,5 +1,7 @@
 // ---------- Aides d’écriture du cours ----------
-const P=(r,a,f)=>`<div class="ph"><b>${r}</b>${a?`<span class="ar" lang="ar">${a}</span>`:""}<em>${f}</em></div>`;
+const AUD={"سلام":1,"واش راك؟":2,"لاباس":3,"الحمد لله":4,"إيه":5,"لالا":6,"بصح":7,"صحا":8,"ش":9,"خ":10,"غ":11,"ق":12,"ح":13,"ع":14,"كتاب":15,"يعطيك الصحة":16,"بلا مزية":17,"الله يخليك":18,"سمحلي":19,"معليش":20,"مرحبا":21,"تفضّل":22,"بالسلامة":23,"إن شاء الله":24,"ما شاء الله":25,"بسم الله":26,"ربي معاك":27,"الله يسهّل":28,"الله يرحمو":29,"مبروك":30,"عيد مبارك":31,"أنا":32,"نتا":33,"نتي":34,"هو":35,"هي":36,"حنا":37,"نتوما":38,"هوما":39,"راني":40,"راك":41,"راكي":42,"راه":43,"راها":44,"رانا":45,"راكم":46,"راهم":47,"واش":48,"شكون":49,"وين":50,"كيفاش":51,"وقتاش":52,"علاش":53,"قداش":54,"ولد":55,"بنت":56,"دار":57,"مدرسة":58,"كبير":59,"صغير":60,"واحد":61,"زوج":62,"تلاتة":63,"أربعة":64,"خمسة":65,"ستة":66,"سبعة":67,"تمنية":68,"تسعة":69,"عشرة":70,"مية":71,"ألف":72,"الفين":73,"شحال في الساعة؟":74,"الساعة":75,"الحد":76,"التنين":77,"التلاتا":78,"الأربعا":79,"الخميس":80,"الجمعة":81,"السبت":82,"الصباح":83,"الظهر":84,"العشية":85,"الليل":86,"النهار":87,"صباح الخير":88,"مسا الخير":89,"البارح":90,"اليوم":91,"غدوة":92,"دركا":93,"ديما":94,"العايلة":95,"يمّا":96,"بابا":97,"خويا":98,"ختي":99,"جدّي":100,"ولدي":101,"بنتي":102,"ولاد":103,"خاوة":104,"فرحان":105,"حزين":106,"عيّان":107,"زعفان":108,"خايف":109,"جيعان":110,"عطشان":111,"واش بيك؟":112,"والو":113,"ما علاباليش":114,"نحبّ":115,"عجبني":116,"راس":117,"شعر":118,"وجه":119,"عين":120,"ودن":121,"نف":122,"فم":123,"سنان":124,"لسان":125,"رقبة":126,"كتف":127,"ذراع":128,"يد":129,"صبع":130,"صدر":131,"قلب":132,"كرش":133,"ظهر":134,"ركبة":135,"رجل":136,"وجع":137,"أبيض":138,"كحل":139,"حمر":140,"خضر":141,"زرق":142,"صفر":143,"رمادي":144,"قهوي":145,"بزّاف":146,"شويّة":147,"كلب":148,"قطة":149,"عصفور":150,"حمامة":151,"أرنب":152,"فار":153,"حوت":154,"بقرة":155,"كبش":156,"معزة":157,"حمار":158,"حصان":159,"دجاجة":160,"ديك":161,"جمل":162,"أسد":163,"ذيب":164,"ثعلب":165,"حنش":166,"نحلة":167,"ذبانة":168,"الصحراء":169,"غابة":170,"قندورة":171,"برنوس":172,"حايك":173,"كاراكو":174,"شاشية":175,"سباط":176,"سندالة":177,"بابوج":178,"نظارة":179,"حزام":180,"شال":181,"خاتم":182,"قلادة":183,"نلبس":184,"نشري":185,"ضايق":186,"واسع":187,"لون":188,"الدار":189,"بيت":190,"كوجينة":191,"حمّام":192,"سطح":193,"حوش":194,"باب":195,"طاقة":196,"طابلة":197,"كرسي":198,"فراش":199,"مفتاح":200,"ضو":201,"تلاجة":202,"كاس":203,"طبسي":204,"مغرفة":205,"فرشيطة":206,"موس":207,"قدرة":208,"كاين":209,"ما كانش":210,"في":211,"فوق":212,"تحت":213,"حدا":214,"قدّام":215,"مورا":216,"بين":217,"طماطيش":218,"بطاطا":219,"بصل":220,"ثوم":221,"زرودية":222,"فلفل":223,"قرعة":224,"لوبيا":225,"خيار":226,"دنجال":227,"كرنب":228,"لفت":229,"تفاح":230,"تشينة":231,"بانان":232,"عنب":233,"دلاع":234,"بطيخ":235,"خوخ":236,"تمر":237,"كرموس":238,"ليمون":239,"فراولة":240,"رمان":241,"مشمش":242,"إجاص":243,"معدنوس":244,"نعناع":245,"كسبر":246,"خبز":247,"ما":248,"حليب":249,"بيض":250,"لحم":251,"دجاج":252,"خضرة":253,"سكر":254,"ملح":255,"رز":256,"زيت":257,"زبدة":258,"جبن":259,"عسل":260,"زيتون":261,"عدس":262,"حمص":263,"كمون":264,"أتاي":265,"قهوة":266,"عصير":267,"غزوز":268,"لبن":269,"حلويات":270,"مقروط":271,"بقلاوة":272,"مالح":273,"حلو":274,"حار":275,"مر":276,"حامض":277,"بنين":278,"شوربة":279,"كسرة":280,"ناكل":281,"كلا":282,"نشرب":283,"شرب":284,"الحساب":285,"بالصحة":286,"السوق":287,"حانوت":288,"زيد":289,"بركا":290,"هاك":291,"ولاية":292,"بلدية":293,"حي":294,"حومة":295,"شارع":296,"زنقة":297,"طريق":298,"بلاصة":299,"جسر":300,"القصبة":301,"ريف":302,"قرية":303,"واد":304,"جبل":305,"بحر":306,"صحراء":307,"الجزائر":308,"وهران":309,"قسنطينة":310,"عنابة":311,"تلمسان":312,"سطيف":313,"الطريق":314,"الزنقة":315,"البلاصة":316,"الجامع":317,"البوسطة":318,"المطار":319,"قريب":320,"بعيد":321,"ليمن":322,"ليسر":323,"نيشان":324,"دور":325,"قطع":326,"حبس":327,"الكار":328,"طيارة":329,"نروح":330,"راح":331,"نجي":332,"جا":333,"الجو":334,"شمس":335,"شتا":336,"الريح":337,"الغيم":338,"ثلج":339,"الربيع":340,"الصيف":341,"الخريف":342,"الشتا":343,"القراية":344,"المدرسة":345,"الجامعة":346,"الأستاذ":347,"الطالب":348,"التلميذ":349,"القسم":350,"الامتحان":351,"نقطة":352,"نقرا":353,"نفهم":354,"طبيب":355,"أستاذ":356,"مهندس":357,"خباز":358,"طباخ":359,"فلاح":360,"البياع":361,"شرطي":362,"خدمة":363,"المهندس":364,"الخباز":365,"الجزار":366,"الحلاق":367,"الخياط":368,"البناي":369,"الفلاح":370,"الطباخ":371,"العساس":372,"المكتب":373,"الشركة":374,"المعمل":375,"الرياضة":376,"الكورة":377,"الفريق":378,"الملعب":379,"السباحة":380,"الهواية":381,"الموسيقى":382,"الفيلم":383,"السينما":384,"صاحبي":385,"صاحبتي":386,"صحابي":387,"الطبيب":388,"سبيطار":389,"دوا":390,"أرواح":391,"روح":392,"أقعد":393,"نوض":394,"أصبر":395,"أعطيني":396,"سمع":397,"القار":398,"المينا":399,"تيكي":400,"سفر":401,"نسافر":402,"دخول":403,"خروج":404,"غرفة":405,"نعيط":406,"جاوب":407,"الشبكة":408,"خاوية":409,"تصويرة":410,"العيد":411,"عيد الفطر":412,"العيد الكبير":413,"الكبش":414,"رمضان":415,"ينّاير":416,"الصيام":417,"نصوم":418,"السحور":419,"الفطور":420,"البوراك":421,"قلب اللوز":422,"العرس":423,"العريس":424,"العروسة":425,"الحنة":426};
+const SND=a=>AUD[a]?`<button class="snd" type="button" data-a="${AUD[a]}" aria-label="Écouter la prononciation">🔊</button>`:"";
+const P=(r,a,f)=>`<div class="ph"><b>${r}</b>${a?`<span class="ar" lang="ar">${a}</span>`:""}${a?SND(a):""}<em>${f}</em></div>`;
 const G=(...p)=>`<div class="grid">${p.join("")}</div>`;
 const D=(...l)=>`<div class="dlg">${l.map((x,i)=>`<div class="b ${i%2?"r":""}"><small>${x[0]}</small><b>${x[1]}</b><em>${x[2]}</em></div>`).join("")}</div>`;
 const R=t=>`<div class="tip">💡 <b>À retenir :</b> ${t}</div>`;
@@ -574,6 +576,60 @@ M("Associe chaque métier à sa traduction",[["tbib","médecin"],["ostad","profe
 C("— wach tkhdem ? — Ana ___, nekhdem fel-madrasa. (professeur)",["ostad","tbib","khabbaz"],"ostad = professeur."),
 I("🩺","Comment dit-on « médecin » ?",["tbib","ostad","mohandis"],"tbib = médecin.")]},
 
+{id:"metiers",c:6,n:"Les métiers et le travail",e:"👷",h:Z("dire quel est ton métier, où tu travailles et poser la question à quelqu’un.")+
+S(1,"Les métiers",G(P("el-ostedh","الأستاذ","le professeur"),P("el-mohandes","المهندس","l’ingénieur"),P("el-khebbaz","الخباز","le boulanger"),P("el-jezzar","الجزار","le boucher"),P("el-7ellaq","الحلاق","le coiffeur"),P("el-khayyet","الخياط","le tailleur"),P("el-bennay","البناي","le maçon"),P("el-fellah","الفلاح","l’agriculteur"),P("et-tebbakh","الطباخ","le cuisinier"),P("el-3essas","العساس","le gardien"))+R("beaucoup de noms de métiers suivent le même moule : <b>kh-e-bb-a-z</b>, <b>j-e-zz-a-r</b>, <b>7-e-ll-a-q</b>, <b>t-e-bb-a-kh</b> : la consonne du milieu est doublée. Pour le féminin, on ajoute -a : <i>ostedh → ostedha</i>, <i>mohandes → mohandesa</i>."))+
+S(2,"Je suis… / Je travaille comme…",G(P("ana mohandes","","je suis ingénieur"),P("ana ostedha","","je suis professeure"),P("nkhdem mohandes","","je travaille comme ingénieur"),P("ana khebbaz","","je suis boulanger"),P("wach tkhdem ?","","que fais-tu comme travail ?"))+R("pour dire son métier, on peut dire <b>ana</b> + métier, ou <b>nkhdem</b> + métier. Pas besoin de « un » ni de « le » : <i>ana mohandes</i> = je suis ingénieur."))+
+S(3,"Où travailles-tu ?",G(P("el-mektab","المكتب","le bureau"),P("es-sherka","الشركة","l’entreprise"),P("el-ma3mal","المعمل","l’usine"),P("el-madrasa","المدرسة","l’école"),P("nkhdem fi es-sherka","","je travaille dans une entreprise"),P("nkhdem fel-madrasa","","je travaille à l’école"),P("nkhdem fel-ma3mal","","je travaille à l’usine"))+R("<b>fi</b> + <b>el</b> se colle : <i>fi + el-madrasa → fel-madrasa</i>."))+
+S(4,"Le verbe « travailler »",G(P("nkhdem","","je travaille"),P("tkhdem","","tu travailles"),P("ykhdem","","il travaille"),P("tkhdem","","elle travaille"),P("nkhedmou","","nous travaillons"),P("tkhedmou","","vous travaillez"),P("ykhedmou","","ils travaillent"),P("khdemt","","j’ai travaillé"))+R("c’est le même schéma que dans la leçon 10 : <b>n-</b>, <b>t-</b>, <b>y-</b>, et <b>-ou</b> au pluriel."))+
+S(5,"Chercher du travail",G(P("nqelleb 3la khedma","","je cherche du travail"),P("ma nkhdem-ch","","je ne travaille pas"),P("khedma s3iba","","un travail difficile"),P("khedma mli7a","","un bon travail"))+D(["Nadia","salam, ana Nadia. wach tkhdem ?","Salut, je suis Nadia. Que fais-tu comme travail ?"],["Sami","ana mohandes. nkhdem fi sherka kbira. w nti ?","Je suis ingénieur. Je travaille dans une grande entreprise. Et toi ?"],["Nadia","ana ostedha. nkhdem fel-madrasa.","Je suis professeure. Je travaille à l’école."],["Sami","khedma s3iba ?","Un travail difficile ?"],["Nadia","chwiya s3iba, bsah n7eb el-khedma bezzaf.","Un peu difficile, mais j’aime beaucoup mon travail."])),
+q:[Q("« el-khebbaz » est :",["le boulanger","le boucher","le coiffeur"],"khebbaz vient de khobz (pain)."),
+Q("« el-jezzar » est :",["le boucher","le boulanger","le cuisinier"],"el-jezzar = le boucher."),
+Q("« el-7ellaq » est :",["le coiffeur","le tailleur","le maçon"],"el-7ellaq = le coiffeur."),
+Q("« el-khayyet » est :",["le tailleur","le coiffeur","le gardien"],"el-khayyet = celui qui coud."),
+Q("« el-bennay » est :",["le maçon","le fermier","le professeur"],"el-bennay = celui qui construit."),
+Q("« el-fellah » est :",["l’agriculteur","le gardien","l’ingénieur"],"el-fellah = l’agriculteur."),
+Q("« et-tebbakh » est :",["le cuisinier","le boucher","le boulanger"],"et-tebbakh = le cuisinier."),
+Q("« el-mohandes » est :",["l’ingénieur","le professeur","le médecin"],"el-mohandes = l’ingénieur."),
+Q("Une femme professeure dit :",["ana ostedha","ana ostedh","ana ostedhin"],"On ajoute -a pour le féminin."),
+Q("Un collègue te demande « wach tkhdem ? ». Que veut-il savoir ?",["ton métier","ton âge","ton adresse"],"tkhdem = tu travailles."),
+Q("« nqelleb 3la khedma » signifie :",["je cherche du travail","je n’ai pas de travail","j’ai un bon travail"],"nqelleb 3la = je cherche."),
+Q("« es-sherka » désigne :",["l’entreprise","l’usine","le bureau"],"es-sherka = l’entreprise."),
+Q("« el-ma3mal » désigne :",["l’usine","l’école","le bureau"],"el-ma3mal = l’usine."),
+Q("« ykhedmou » signifie :",["ils travaillent","nous travaillons","je travaille"],"y- … -ou = ils."),
+V("Pour dire « je suis ingénieur », il faut ajouter un mot pour « un ».",false,"On dit simplement : ana mohandes."),
+O("Remets en ordre : « Je travaille dans une entreprise »",["nkhdem","fi","es-sherka"],"nkhdem + fi + es-sherka."),
+M("Associe chaque métier à sa traduction",[["el-khebbaz","boulanger"],["el-jezzar","boucher"],["el-bennay","maçon"],["el-7ellaq","coiffeur"]],"Quatre métiers du quotidien."),
+C("Elle est professeure : ana ___",["ostedha","ostedh","mohandes"],"ostedha = professeure."),
+C("Je travaille à l’école : nkhdem ___",["fel-madrasa","fel-ma3mal","fel-mektab"],"fi + el-madrasa = fel-madrasa."),
+I("🧑‍🍳","Quel métier est-ce ?",["et-tebbakh","el-fellah","el-jezzar"],"et-tebbakh = le cuisinier."),
+I("👨‍🌾","Quel métier est-ce ?",["el-fellah","el-khayyet","el-bennay"],"el-fellah = l’agriculteur.")]},
+
+{id:"loisirs",c:6,n:"Les loisirs et le sport",e:"⚽",h:Z("parler de ce que tu aimes faire, du sport et inviter un ami.")+
+S(1,"Le sport",G(P("er-ryada","الرياضة","le sport"),P("el-koura","الكورة","le football, le ballon"),P("el-match","","le match"),P("el-fariq","الفريق","l’équipe"),P("el-mal3ab","الملعب","le terrain, le stade"),P("es-sba7a","السباحة","la natation"),P("nel3eb el-koura","","je joue au football"),P("nsba7","","je nage"))+R("<b>nel3eb</b> = je joue (verbe <i>l3eb</i>). Tu joues = <i>tel3eb</i>, il joue = <i>yel3eb</i>."))+
+S(2,"Les loisirs",G(P("el-hewaya","الهواية","le loisir, le passe-temps"),P("el-mousiqa","الموسيقى","la musique"),P("nsma3 el-mousiqa","","j’écoute de la musique"),P("el-film","الفيلم","le film"),P("nchouf film","","je regarde un film"),P("es-sinima","السينما","le cinéma"),P("nrou7 l-es-sinima","","je vais au cinéma"),P("nqra","","je lis"),P("nrsem","","je dessine")))+
+S(3,"J’aime / je n’aime pas",G(P("wach t7eb ?","","qu’est-ce que tu aimes ?"),P("n7eb el-koura bezzaf","","j’aime beaucoup le football"),P("ma n7eb-ch es-sba7a","","je n’aime pas la natation"),P("sa7bi","صاحبي","mon ami"),P("sa7bti","صاحبتي","mon amie"),P("sa7abi","صحابي","mes amis"),P("m3a sa7abi","","avec mes amis"))+R("<b>m3a</b> = avec. <i>m3a sa7abi</i> = avec mes amis (tu as déjà vu <i>m3a men ?</i> = avec qui ?)."))+
+S(4,"Inviter un ami",G(P("tel3eb m3aya ?","","tu joues avec moi ?"),P("t7eb tji ?","","tu veux venir ?"),P("yalla !","","allez, on y va !"),P("nchoufek ghedwa","","à demain (je te vois demain)"))+D(["Karim","wach tdir fel-weekend ?","Que fais-tu ce week-end ?"],["Amine","n7eb nel3eb el-koura m3a sa7abi. t7eb tji ?","J’aime jouer au foot avec mes amis. Tu veux venir ?"],["Karim","yalla ! fi el-mal3ab ?","Allez ! Au terrain ?"],["Amine","iyeh, ghedwa. nchoufek !","Oui, demain. À demain !"])),
+q:[Q("« el-koura » signifie :",["le football, le ballon","le sport","la musique"],"el-koura = le ballon, le football."),
+Q("« er-ryada » signifie :",["le sport","le jeu","le terrain"],"er-ryada = le sport."),
+Q("« el-fariq » signifie :",["l’équipe","le match","le terrain"],"el-fariq = l’équipe."),
+Q("« el-mal3ab » signifie :",["le terrain, le stade","l’équipe","le cinéma"],"el-mal3ab = l’endroit où l’on joue."),
+Q("« nsba7 » signifie :",["je nage","je joue","je cours"],"es-sba7a = la natation."),
+Q("« nel3eb » signifie :",["je joue","je regarde","je lis"],"nel3eb = je joue."),
+Q("« el-hewaya » signifie :",["le loisir","la maison","le travail"],"el-hewaya = le passe-temps."),
+Q("« nsma3 el-mousiqa » signifie :",["j’écoute de la musique","je lis un livre","je regarde un film"],"nsma3 = j’écoute."),
+Q("« nchouf film » signifie :",["je regarde un film","je vais au cinéma","j’écoute un film"],"nchouf = je regarde."),
+Q("« es-sinima » signifie :",["le cinéma","le film","la musique"],"es-sinima = le cinéma."),
+Q("« wach t7eb ? » signifie :",["qu’est-ce que tu aimes ?","où vas-tu ?","tu es qui ?"],"t7eb = tu aimes."),
+Q("« sa7abi » signifie :",["mes amis","mon ami","mon amie"],"sa7bi = mon ami ; sa7abi = mes amis."),
+Q("« m3a sa7abi » signifie :",["avec mes amis","sans mes amis","chez mes amis"],"m3a = avec."),
+V("« ma n7eb-ch es-sba7a » veut dire : j’aime la natation.",false,"La négation ma … -ch change le sens : je n’aime pas."),
+O("Remets en ordre : « J’aime beaucoup le football »",["n7eb","el-koura","bezzaf"],"n7eb + el-koura + bezzaf."),
+M("Associe chaque mot à sa traduction",[["el-fariq","équipe"],["el-mal3ab","terrain"],["es-sinima","cinéma"],["el-mousiqa","musique"]],"Quatre mots de loisirs."),
+C("J’aime jouer avec mes amis : n7eb nel3eb ___ sa7abi",["m3a","fi","men"],"m3a = avec."),
+C("Je n’aime pas la natation : ___ n7eb-ch es-sba7a",["ma","wach","kayen"],"ma … -ch = négation."),
+I("⚽","Quel mot darija correspond à ce dessin ?",["el-koura","es-sinima","el-film"],"el-koura = le football, le ballon."),
+I("🎬","Quel mot darija correspond à ce dessin ?",["es-sinima","el-mal3ab","er-ryada"],"es-sinima = le cinéma.")]},
+
 {id:"sante",c:6,n:"La santé : médecin et pharmacie",e:"💊",h:Z("expliquer ce qui ne va pas, comprendre les conseils du médecin et aller à la pharmacie.")+
 S(1,"Où aller ?",G(P("et-tbib","الطبيب","le médecin"),P("sbitar","سبيطار","l’hôpital"),P("el-farmasyan","","la pharmacie"),P("dwa","دوا","médicament"),P("ordonans","","l’ordonnance"),P("rendez-vous","","rendez-vous")))+
 S(2,"Dire ce qui ne va pas",G(P("rani mrid","","je suis malade (h)"),P("rani mrida","","je suis malade (f)"),P("3andi wja3 fi rassi","","j’ai mal à la tête"),P("3andi zoukam","","j’ai un rhume"),P("3andi s3al","","j’ai une toux"),P("3andi 7omma","","j’ai de la fièvre"))+R("tu connais déjà <b>wja3</b> et les parties du corps (leçon 13)."))+
@@ -624,7 +680,7 @@ Q("Comment dit-on « écoute ! » (à un homme) ?",["sma3","kol","ro7"],"sma3 = 
 
 {id:"voyages",c:7,n:"Voyager : gare, aéroport et hôtel",e:"✈️",h:Z("acheter un billet, voyager et réserver une chambre d’hôtel.")+
 S(1,"Les lieux et les transports",G(P("el-matar","المطار","l’aéroport"),P("tiyara","طيارة","avion"),P("el-gar","القار","la gare"),P("el-train","","le train"),P("el-kar","الكار","le bus"),P("el-mina","المينا","le port"),P("el-bateau","","le bateau"),P("el-hotel","","l’hôtel")))+
-S(2,"Billets et bagages",G(P("tiki","تيكي","billet"),P("el-passport","","le passeport"),P("valiza","","valise"),P("sak","","sac"),P("safar","سفر","voyage"),P("nsafer","نسافر","je voyage"),P("dkhoul","دخول","entrée"),P("khrouj","خروج","sortie"))+R("pour dire « je vais voyager », utilise le futur proche (leçon 27) : <i>rani rayeh nsafer</i>."))+
+S(2,"Billets et bagages",G(P("tiki","تيكي","billet"),P("el-passport","","le passeport"),P("valiza","","valise"),P("sak","","sac"),P("safar","سفر","voyage"),P("nsafer","نسافر","je voyage"),P("dkhoul","دخول","entrée"),P("khrouj","خروج","sortie"))+R("pour dire « je vais voyager », utilise le futur proche (leçon 29) : <i>rani rayeh nsafer</i>."))+
 S(3,"À l’hôtel",G(P("ghorfa","غرفة","chambre"),P("n7ebb ghorfa","","je voudrais une chambre"),P("b-zouj lyali","","pour deux nuits"),P("gadach el-lila ?","","combien la nuit ?"),P("el-ftour","","le petit-déjeuner"),P("el-wifi","","le wifi"),P("el-mefta7","مفتاح","la clé")))+
 S(4,"Dialogue à la gare",D(["Client","salam, n7ebb tiki l-Wahran, llah ykhallik.","Bonjour, je voudrais un billet pour Oran, s’il vous plaît."],["Vendeur","waqtach ?","Quand ?"],["Client","ghedwa fes-sba7.","Demain matin."],["Vendeur","mli7. Alf w miya dinar.","D’accord. Mille cent dinars."],["Client","hak. Saha !","Tenez. Merci !"]))+
 S(5,"Dialogue à l’hôtel",D(["Client","salam, n7ebb ghorfa b-zouj lyali.","Bonjour, je voudrais une chambre pour deux nuits."],["Réceptionniste","mer7ba bik ! 3andek el-passport ?","Bienvenue ! Vous avez votre passeport ?"],["Client","ih, hak.","Oui, tenez."],["Réceptionniste","tfaddal, hada el-mefta7. El-ftour fes-sba7.","Voici la clé. Le petit-déjeuner est le matin."])),
@@ -669,6 +725,32 @@ M("Associe chaque mot à sa traduction",[["el-batri","la batterie"],["el-chargeu
 C("rani fi ed-dar. Ma kayen-ch ___ hna. (le réseau)",["ch-chbaka","el-batri","messaj"],"ch-chbaka = le réseau."),
 I("📱","Comment dit-on « téléphone portable » ?",["el-portable","el-wifi","el-chargeur"],"el-portable = téléphone portable.")]},
 
+{id:"fetes",c:7,n:"Fêtes et traditions",e:"🎉",h:Z("comprendre les grandes fêtes d’Algérie et savoir souhaiter une bonne fête.")+
+S(1,"Les grandes fêtes",G(P("el-3id","العيد","la fête"),P("3id el-fitr","عيد الفطر","l’Aïd de la fin du Ramadan"),P("el-3id el-kbir","العيد الكبير","l’Aïd du mouton (3id el-adha)"),P("el-kebch","الكبش","le mouton"),P("ramdhan","رمضان","le Ramadan"),P("yennayer","ينّاير","le Nouvel An amazigh"),P("5 juillet","","la fête de l’Indépendance"))+R("Yennayer se fête vers le <b>12 janvier</b> et c’est un jour férié en Algérie depuis 2018."))+
+S(2,"Pendant le Ramadan",G(P("es-syam","الصيام","le jeûne"),P("nsoum","نصوم","je jeûne"),P("es-sehour","السحور","le repas avant l’aube"),P("el-ftour","الفطور","le repas de rupture du jeûne"),P("el-bourek","البوراك","le bourek (feuilleté farci)"),P("tmar","تمر","les dattes"),P("qalb el-louz","قلب اللوز","gâteau de semoule et d’amandes"))+R("tu connais déjà <b>chorba</b> (soupe) et <b>zlabia</b> : ce sont deux grands classiques de la table du Ramadan. Attention : <b>el-ftour</b> veut dire « petit-déjeuner » toute l’année, et « repas de rupture du jeûne » pendant le Ramadan."))+
+S(3,"Souhaits et réponses",G(P("3id mbarek","","bonne fête"),P("saha aidkoum","","bonne fête (à vous)"),P("kol 3am w ntouma bkhir","","que chaque année vous trouve en bonne santé"),P("w ntouma bkhir","","et vous aussi"),P("ramdan karim","","Ramadan généreux (bon Ramadan)"),P("tqebbel Allah","","que Dieu accepte (nos prières, notre jeûne)"),P("assegas ameggaz","","bonne année (en tamazight)"))+R("on répond à un souhait par <b>w ntouma bkhir</b> (« et vous aussi »). À une seule personne : <i>w nta bkhir</i> (à un homme), <i>w nti bkhir</i> (à une femme)."))+
+S(4,"Le mariage",G(P("el-3ors","العرس","le mariage"),P("el-3ris","العريس","le marié"),P("el-3rousa","العروسة","la mariée"),P("el-henna","الحنة","le henné"),P("mabrouk 3lik","","félicitations à toi"),P("mabrouk 3likoum","","félicitations à vous"))+D(["Karim","3id mbarek, Sofia !","Bonne fête, Sofia !"],["Sofia","3id mbarek ! saha aidkoum, kol 3am w ntouma bkhir.","Bonne fête ! Que chaque année vous trouve en bonne santé."],["Karim","w ntouma bkhir. kayen el-kebch ?","Et vous aussi. Il y a le mouton ?"],["Sofia","ah, kayen. ji 3andna ghedwa !","Oui, il y en a. Viens chez nous demain !"])),
+q:[Q("« el-3id » signifie :",["la fête","la fin","la maison"],"el-3id = la fête."),
+Q("« el-kebch » est :",["le mouton","la chèvre","le bœuf"],"el-kebch = le mouton de l’Aïd."),
+Q("« es-syam » signifie :",["le jeûne","le repas","la prière"],"es-syam = le jeûne."),
+Q("« nsoum » signifie :",["je jeûne","je mange","je dors"],"nsoum = je jeûne."),
+Q("« es-sehour » est :",["le repas avant l’aube","le repas de midi","le dîner tardif"],"es-sehour = avant le début du jeûne."),
+Q("« el-bourek » est :",["un feuilleté farci","une soupe","un fruit"],"el-bourek = feuilleté farci."),
+Q("« tmar » signifie :",["les dattes","le pain","le lait"],"tmar = les dattes."),
+Q("Yennayer est :",["le Nouvel An amazigh","la fête du mouton","la fin du Ramadan"],"Yennayer, vers le 12 janvier."),
+Q("« saha aidkoum » est un souhait pour :",["la fête","l’anniversaire","le repas"],"On le dit à l’Aïd."),
+Q("On répond à « kol 3am w ntouma bkhir » par :",["w ntouma bkhir","ma kayen-ch","bessa7a"],"w ntouma bkhir = et vous aussi."),
+Q("« el-3ors » signifie :",["le mariage","la fête du mouton","l’anniversaire"],"el-3ors = le mariage."),
+Q("« el-3rousa » désigne :",["la mariée","le marié","la sœur"],"el-3rousa = la mariée."),
+Q("« mabrouk 3lik » signifie :",["félicitations à toi","bonne chance","bon appétit"],"mabrouk = félicitations."),
+V("Yennayer est le Nouvel An amazigh.",true,"On le fête vers le 12 janvier."),
+V("« el-ftour » veut dire seulement « dîner ».",false,"Petit-déjeuner toute l’année ; repas de rupture du jeûne au Ramadan."),
+O("Remets en ordre : « Et vous aussi »",["w","ntouma","bkhir"],"w ntouma bkhir."),
+M("Associe chaque mot à sa traduction",[["el-3ris","marié"],["el-3rousa","mariée"],["el-henna","henné"],["el-3ors","mariage"]],"Les mots du mariage."),
+C("Réponds à « saha aidkoum » : ___ ntouma bkhir",["w","ma","fi"],"w = et."),
+I("🐑","Quel mot darija correspond à ce dessin ?",["el-kebch","tmar","el-bourek"],"el-kebch = le mouton."),
+I("🌙","Quel mot darija correspond à ce dessin ?",["ramdhan","yennayer","el-3ors"],"ramdhan = le Ramadan.")]},
+
 {id:"dialogues",c:7,n:"Dialogues de la vie courante",e:"🗨️",h:Z("lire des conversations complètes et les comprendre en situation.")+
 S(1,"Dans un taxi",D(["Client","salam, n7ebb nrou7 l-el-matar.","Bonjour, je voudrais aller à l’aéroport."],["Chauffeur","mli7, tfaddal.","D’accord, installe-toi."],["Client","gadach ?","Combien ça coûte ?"],["Chauffeur","alfin dinar.","Deux mille dinars."],["Client","ghali bezzaf ! Naqqes chwiya.","C’est trop cher ! Baisse un peu."],["Chauffeur","mli7, alf w khams miya.","D’accord, mille cinq cents."],["Client","mli7. 7bes hna, llah ykhallik. Hak. Saha !","D’accord. Arrête-toi ici, s’il te plaît. Tiens. Merci !"]))+
 S(2,"Chez des amis",D(["Hôte","mer7ba bik ! Tfaddal, dkhol !","Bienvenue ! Entre, je t’en prie !"],["Invité","ya3tik es-sa7a. Kifach rah el-3ayla ?","Merci. Comment va la famille ?"],["Hôte","el-hamdoulillah, kolchi mli7. Ag3ed, rani njib el-qahwa.","Dieu merci, tout va bien. Assieds-toi, je t’apporte le café."],["Invité","ma tet3ab-ch rouhek.","Ne te dérange pas."],["Hôte","bla mziya. Bessa7a !","De rien. À ta santé !"])+R("<b>kolchi</b> = tout, <b>njib</b> = j’apporte, <b>ma tet3ab-ch rouhek</b> = ne te fatigue pas (formule de politesse)."))+
@@ -692,6 +774,31 @@ O("Remets en ordre : « Arrête-toi ici, s’il te plaît »",["7bes","hna,","ll
 M("Associe chaque phrase à son sens",[["gadach ?","combien ?"],["7bes hna","arrête-toi ici"],["ma fhemt-ch","je n’ai pas compris"],["ya3tik es-sa7a","merci"]],"Phrases utiles."),
 C("— Kifach rah el-3ayla ? — El-hamdoulillah, ___ mli7.",["kolchi","walou","bezzaf"],"kolchi = tout."),
 I("🚕","Comment dit-on « taxi » ?",["taxi","el-kar","el-train"],"taxi se dit comme en français.")]},
+
+{id:"dialogues2",c:7,n:"Dialogues de la vie courante (2)",e:"💬",h:Z("lire d’autres conversations complètes et les comprendre sans traduction mot à mot.")+
+S(1,"Mots utiles pour ces dialogues",G(P("tji ?","","tu viens ?"),P("nji","","je viens"),P("ji !","","viens !"),P("3andna","","chez nous"),P("wa9tach ?","","quand ?"),P("yalla","","allez !"))+R("<b>3andi</b> = chez moi / j’ai, <b>3andna</b> = chez nous / nous avons."))+
+S(2,"Une invitation au mariage",D(["Sofia","salam Karim ! wach rak ?","Salut Karim ! Comment vas-tu ?"],["Karim","labas. w nti ?","Ça va. Et toi ?"],["Sofia","labas. ghedwa kayen el-3ors 3andna. tji ?","Ça va. Demain il y a le mariage chez nous. Tu viens ?"],["Karim","mabrouk 3lik ! wa9tach ?","Félicitations ! C’est à quelle heure ?"],["Sofia","es-sa3a tmenya.","À huit heures."],["Karim","in cha Allah, nji.","Si Dieu le veut, je viens."]))+
+S(3,"Après le match",D(["Karim","kifach kan el-match ?","Comment était le match ?"],["Amine","kan mli7 bezzaf, bsah el-jaw kan bared.","Il était très bien, mais il faisait froid."],["Karim","w nta, rak bared ?","Et toi, tu as froid ?"],["Amine","ah, rani bared bezzaf !","Oui, j’ai très froid !"]))+
+S(4,"Faire connaissance au travail",D(["Nadia","salam, ana Nadia. wach tkhdem ?","Salut, je suis Nadia. Que fais-tu comme travail ?"],["Sami","ana mohandes. w nti ?","Je suis ingénieur. Et toi ?"],["Nadia","ana ostedha. nkhdem fel-madrasa.","Je suis professeure. Je travaille à l’école."],["Sami","mli7 ! nchoufek ghedwa.","Très bien ! À demain."]))+
+S(5,"Pour l’Aïd",D(["Yacine","3id mbarek, Sara !","Bonne fête, Sara !"],["Sara","3id mbarek ! kol 3am w ntouma bkhir.","Bonne fête ! Que chaque année vous trouve en bonne santé."],["Yacine","w ntouma bkhir. kayen el-ftour 3andkoum ?","Et vous aussi. Il y a le repas chez vous ?"],["Sara","ah, kayen. ji 3andna !","Oui. Viens chez nous !"],["Yacine","bessa7a ! nji ghedwa.","Merci ! Je viens demain."])),
+q:[Q("« tji ? » signifie :",["tu viens ?","tu vas ?","tu pars ?"],"tji = tu viens."),
+Q("« nji » signifie :",["je viens","je pars","je reste"],"nji = je viens."),
+Q("« 3andna » signifie :",["chez nous","chez toi","chez eux"],"-na = nous."),
+Q("« wa9tach ? » signifie :",["quand ?","pourquoi ?","où ?"],"wa9tach = quand."),
+Q("Dans l’invitation, Sofia invite Karim à :",["un mariage","un match","un cours"],"el-3ors = le mariage."),
+Q("« es-sa3a tmenya » signifie :",["il est huit heures","il est neuf heures","il est midi"],"tmenya = 8."),
+Q("« in cha Allah, nji » signifie :",["si Dieu le veut, je viens","je ne viens pas","viens demain"],"in cha Allah + nji."),
+Q("Après le match, Amine dit que :",["il faisait froid","il pleuvait","il faisait chaud"],"el-jaw kan bared."),
+Q("Nadia travaille :",["à l’école","à l’usine","au bureau"],"nkhdem fel-madrasa."),
+Q("Sami est :",["ingénieur","professeur","boulanger"],"ana mohandes."),
+Q("Pour l’Aïd, Yacine répond :",["w ntouma bkhir","ma kayen-ch","3awed"],"w ntouma bkhir = et vous aussi."),
+Q("« ji 3andna ! » signifie :",["viens chez nous !","pars de chez nous !","reste chez toi !"],"ji = viens ; 3andna = chez nous."),
+V("« 3andna » veut dire « chez moi ».",false,"-na = nous : chez nous."),
+V("« wa9tach » sert à demander l’heure ou le moment.",true,"wa9tach = quand ?"),
+O("Remets en ordre : « Demain, je viens »",["ghedwa","nji"],"ghedwa + nji."),
+M("Associe chaque mot à sa traduction",[["nji","je viens"],["tji","tu viens"],["3andna","chez nous"],["wa9tach","quand"]],"Des mots des dialogues."),
+C("Tu viens ? : ___ ?",["tji","nji","ji"],"tji = tu viens."),
+C("À huit heures : es-sa3a ___",["tmenya","tes3a","setta"],"tmenya = 8.")]},
 
 {id:"pieges",tool:1,n:"Pièges fréquents",e:"⚠️",h:Z("éviter les confusions les plus courantes quand on apprend le darija.")+
 S(1,"Les mots qui se ressemblent",G(P("7mar ≠ 7mer","","âne ≠ rouge"),P("bsah ≠ bessa7a","","mais ≠ bon appétit"),P("khali ≠ khalti","","oncle maternel ≠ tante maternelle"),P("3ammi ≠ 3ammti","","oncle paternel ≠ tante paternelle"),P("kbir ≠ kbar","","grand ≠ plus grand"),P("tfa7 ≠ tfa7a","","les pommes ≠ une pomme")))+
