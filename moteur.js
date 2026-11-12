@@ -52,6 +52,7 @@ function draw(){menu();const l=L[cur];document.title=lab(l)+" – Darija algéri
   if(l.custom){$("main").innerHTML=`<h2 class="t">${l.e} ${l.n}</h2>`+PAGES[l.id]()+nav(`<button onclick="go(${cur+1})">Suivant →</button>`);if(AFTER[l.id])AFTER[l.id]();return}
   $("main").innerHTML=`<h2 class="t">${chip(l)}${l.e} ${lab(l)}</h2>${l.h}
   ${nav(`<button onclick="start()">🎮 Passer aux activités →</button>`)}
+  ${l.id=="alphabet"?`<div class="card lien"><h3>📖 Envie de vraiment savoir lire ?</h3><p>Le cours <b>Lire l’arabe</b> reprend les lettres une par une, avec les voyelles, des exercices et des aides pour lire de vrais mots.</p><p><a class="btn" href="lire.html">Ouvrir le cours Lire l’arabe →</a></p></div>`:""}
   <p class="foot">ℹ️ Le darija varie d’une région à l’autre : ce cours enseigne l’usage courant, surtout celui d’Alger. Un mot peut se dire autrement ailleurs.</p>`;
  }else if(mode=="quiz")drawQ();else drawEnd();
 }
