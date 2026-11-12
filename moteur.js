@@ -97,7 +97,7 @@ function chk(){const q=qs[qi];if(!cho.length)return;const ok=cho.join(" ")==q.w.
 function fin(ok){const q=qs[qi];
  if(!fait[qi]){fait[qi]=true;if(ok)score++;else miss.push(q);if(kind!="retry")rec(q,ok)}
  const rep=q.t=="qcm"?q.o[q.c]:q.t=="ord"?q.w.join(" "):q.p.map(x=>x[0]+" = "+x[1]).join(" ; ");
- $("fb").innerHTML=`<div class="fb ${ok?"ok":"ko"}">${ok?"✅ Bravo ! ":"❌ Pas tout à fait. Bonne réponse : "+rep+". "}${q.ex||""}</div>`+(ok?"":`<p><button onclick="drawQ()">🔄 Réessayer</button></p>`);
+ $("fb").innerHTML=`<div class="fb ${ok?"ok":"ko"}">${ok?"✅ Bravo ! ":"❌ Pas tout à fait. Bonne réponse : "+rep+(/[.?!…]$/.test(rep)?" ":". ")}${q.ex||""}</div>`+(ok?"":`<p><button onclick="drawQ()">🔄 Réessayer</button></p>`);
  $("nx").disabled=false;$("nx").textContent=qi==qs.length-1?"Voir mon score 🎉":"Suivant →";
  document.querySelectorAll("#main .card button").forEach(b=>{if(!b.textContent.includes("Réessayer"))b.disabled=true})}
 function next(){if(qi<qs.length-1){qi++;drawQ()}else{mode="fin";if(kind=="quiz"){res[L[cur].id]=Math.round(100*score/qs.length);sv("dz_res2",res)}scrollTo(0,0);draw()}}
