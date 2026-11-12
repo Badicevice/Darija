@@ -198,3 +198,11 @@ button{min-height:44px}
 .dlg .b.on{outline:3px solid var(--y);outline-offset:1px}
 .dlg .b.echo{outline:3px dashed var(--g3);outline-offset:1px}
 .dlg .b.echo::after{content:"🗣️ À toi de répéter…";display:block;margin-top:6px;font-weight:800;font-size:.85rem;color:var(--g2)}
+
+/* Lien de don, discret et toujours visible */
+.don{position:fixed;right:14px;bottom:14px;z-index:35;display:flex;align-items:center;gap:0;height:44px;padding:0 13px;border-radius:999px;background:#fff;border:1px solid var(--line);box-shadow:0 4px 14px rgba(10,30,20,.18);color:var(--ink);text-decoration:none;font-size:.85rem;font-weight:700;opacity:.92;transition:gap .2s,opacity .2s}
+.don svg{width:22px;height:15px;border-radius:3px;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.don span{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .25s}
+.don:hover,.don:focus-visible{opacity:1;gap:8px}
+.don:hover span,.don:focus-visible span{max-width:200px}
+@media print{.don{display:none}}
