@@ -184,3 +184,5 @@ button{min-height:44px}
 .alv{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:10px 0}
 .alv div{background:var(--g5);border-radius:12px;padding:8px;text-align:center;display:grid;gap:2px}
 .alv .ar{font-size:2rem;line-height:1.4}.alv em{font-size:.8rem;font-style:normal;color:#555}
+
+.pps{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:6px}.pps .snd{margin:0}
