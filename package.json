@@ -1,0 +1,24 @@
+{
+  "name": "darija",
+  "version": "1.0.0",
+  "description": "Cours interactif de darija algérien",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Badicevice/Darija.git"
+  },
+  "keywords": ["darija", "arabic", "algerian", "language-learning"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Badicevice/Darija/issues"
+  },
+  "homepage": "https://github.com/Badicevice/Darija#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
