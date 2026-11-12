@@ -10,10 +10,12 @@ const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"
 const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)};
 
 // ---------- Leçons et outils ----------
-const L=LES.slice();L.forEach((l,i)=>l.no=i+1);
-L.push({id:"lettres",custom:1,e:"📋",n:"Les 28 lettres"});
+LES.forEach((l,i)=>l.no=i+1);
+const L=[{id:"lettres",custom:1,e:"📋",n:"Les 28 lettres"}].concat(LES);
 L.push({id:"revision",custom:1,e:"🔁",n:"Révision du jour"});
 const NL=LES.length;
+const ABC="ابتثجحخدذرزسشصضطظعغفقكلمنهوي";
+const LETQ=()=>[...ABC].map((c,i)=>({t:"alpha",q:"Écoute le nom de la lettre et retrouve-la parmi les 28",a:1200+i,ans:c}));
 const AR=s=>String(s).replace(/[\u0600-\u06FF](?:[\u0600-\u06FF\s]*[\u0600-\u06FF])?/g,x=>`<bdi class="nw" lang="ar">${x}</bdi>`);
 
 // ---------- Écriture arabe ----------
@@ -41,18 +43,18 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
  if(h<3)st.n++;else{box.querySelectorAll("[data-rw]").forEach(x=>x.disabled=true);if(st.quiz)selfGrade(st)}});
 
 // ---------- État ----------
-let cur=0,mode="cours",qi=0,score=0,qs=[],fait=[],miss=[],kind="quiz",pend=[],cho=[],tri=[];
+let cur=1,mode="cours",qi=0,score=0,qs=[],fait=[],miss=[],kind="quiz",pend=[],cho=[],tri=[];
 let res=ld("ar_res",{}),SR=ld("ar_sr",{});
 {const k=L.findIndex(l=>l.id==ld("ar_last",""));if(k>0)cur=k}
 const INT=[0,1,3,7,14,30];
-const qkey=q=>hash(q.t+"|"+q.q+"|"+(q.t=="qcm"?q.o[0]+(q.big||"")+(q.a||""):q.t=="lis"?q.w.ar:q.t=="ass"?q.ar:q.it.map(x=>x[0]).join("")));
+const qkey=q=>hash(q.t+"|"+q.q+"|"+(q.t=="qcm"?q.o[0]+(q.big||"")+(q.a||""):q.t=="lis"?q.w.ar:q.t=="ass"?q.ar:q.t=="alpha"?q.ans:q.it.map(x=>x[0]).join("")));
 let QMAP=null;const allQ=()=>{if(!QMAP){QMAP={};LES.forEach(l=>l.q.forEach(q=>QMAP[qkey(q)]=q))}return QMAP};
 function rec(q,ok){const k=qkey(q),s=SR[k]||{b:0,d:0};if(ok){s.b=Math.min(5,s.b+1);s.d=Date.now()+INT[s.b]*864e5}else{s.b=1;s.d=Date.now()}SR[k]=s;sv("ar_sr",SR)}
 const dueKeys=()=>{const m=allQ(),n=Date.now();return Object.keys(SR).filter(k=>m[k]&&SR[k].d<=n)};
 
 // ---------- Menu ----------
-function menu(){let h=`<div class="ch"><span>📖 Apprendre à lire</span><b>${LES.filter(l=>res[l.id]!=null).length}/${NL}</b></div>`;const du=dueKeys().length;
- L.forEach((l,i)=>{if(i==NL)h+=`<div class="ch"><span>🧰 Outils</span></div>`;
+function menu(){let h=`<div class="ch"><span>🔤 L’alphabet</span></div>`;const du=dueKeys().length;
+ L.forEach((l,i)=>{if(i==1)h+=`<div class="ch"><span>📖 Apprendre à lire</span><b>${LES.filter(l=>res[l.id]!=null).length}/${NL}</b></div>`;if(i==NL+1)h+=`<div class="ch"><span>🧰 Outils</span></div>`;
   const badge=l.id=="revision"&&du?`<span class="sc">${du}</span>`:res[l.id]!=null?`<span class="sc">✓ ${res[l.id]}%</span>`:"";
   h+=`<button class="${i==cur?"on":""}"${i==cur?' aria-current="page"':""} onclick="go(${i})"><span>${l.e}</span><span class="lt">${l.no?l.no+". ":""}${AR(l.n)}</span>${badge}</button>`});
  $("menu").innerHTML=h;const n=LES.filter(l=>res[l.id]!=null).length,p=Math.round(100*n/NL);
@@ -63,13 +65,13 @@ function nav(extra){return `<div class="nav"><button ${cur?"":"disabled"} onclic
 function draw(){menu();RW={};const l=L[cur];document.title=(l.no?"Leçon "+l.no+" : ":"")+l.n+" – Lire l’arabe";
  if(mode=="quiz")return drawQ();if(mode=="fin")return drawEnd();
  if(l.custom){$("main").innerHTML=`<h2 class="t">${l.e} ${l.n}</h2>`+PAGES[l.id]()+nav(cur<L.length-1?`<button onclick="go(${cur+1})">Suivant →</button>`:"");return}
- let h=l.h.replace("%LETTERS%",l.L?letterCards(l.L):"").replace("%READ%",`<div class="rws">${l.read.map(w=>reader(w,0)).join("")}</div>`);
+ let h=l.h.replace("%LETTERS%",l.L?letterCards(l.L)+`<p><button type="button" class="lk28" onclick="go(0)">📋 Voir les 28 lettres</button></p>`:"").replace("%READ%",`<div class="rws">${l.read.map(w=>reader(w,0)).join("")}</div>`);
  $("main").innerHTML=`<h2 class="t">${chip(l)}${l.e} ${AR(l.n)}</h2><div class="goal">🎯 Objectif : ${l.goal}</div>${h}
  ${nav(`<button onclick="start()">🎮 Passer aux activités →</button>`)}`}
 
 // ---------- Exercices ----------
 function begin(list,k){qs=list;qi=0;score=0;miss=[];kind=k;fait=qs.map(()=>false);mode="quiz";scrollTo(0,0);draw()}
-function start(){begin(mel(L[cur].q),"quiz")}
+function start(){begin(L[cur].id=="lettres"?mel(LETQ()).slice(0,10):mel(L[cur].q),"quiz")}
 function retry(){begin(miss.slice(),"retry")}
 function revStart(){const m=allQ();begin(dueKeys().sort((a,b)=>SR[a].d-SR[b].d).slice(0,10).map(k=>m[k]),"review")}
 function drawQ(){RW={};const q=qs[qi],pc=Math.round(100*qi/qs.length);let body="",top="";
@@ -79,6 +81,7 @@ function drawQ(){RW={};const q=qs[qi],pc=Math.round(100*qi/qs.length);let body="
  else if(q.t=="lis")body=reader(q.w,1)+`<div id="sg"></div>`;
  else if(q.t=="ass"){pend=mel(clusters(q.ar).map((c,i)=>({c,i})));cho=[];
   body=`<div class="asw" lang="ar" dir="rtl" id="asw"></div><div class="ans asr" id="ans" dir="rtl"></div><div class="pool asr" id="pool" dir="rtl"></div><button onclick="chk()">Vérifier ✔</button> <button onclick="clr()">Effacer</button>`}
+ else if(q.t=="alpha")body=`<div class="alq">${[...ABC].map(c=>`<button class="opt" lang="ar" onclick="apick(this,'${c}')">${c}</button>`).join("")}</div>`;
  else if(q.t=="tri"){tri=q.it.map(()=>null);body=`<div class="tri">${q.it.map((x,i)=>`<div class="trr"><span lang="ar">${x[0]}</span><div>${q.cats.map((c,j)=>`<button type="button" data-t="${i}" data-c="${j}" onclick="tsel(${i},${j})">${c}</button>`).join("")}</div></div>`).join("")}</div><button onclick="tchk()">Vérifier ✔</button>`}
  if(q.h)body+=` <button id="hb" onclick="this.outerHTML='<p class=tip>💡 '+this.dataset.h+'</p>'" data-h="${esc(q.h)}">💡 Indice</button>`;
  const t=kind=="review"?"🔁 Révision du jour":kind=="retry"?"🔁 Mes erreurs":L[cur].e+" "+AR(L[cur].n);
@@ -98,13 +101,14 @@ function tsel(i,j){tri[i]=j;document.querySelectorAll(`[data-t="${i}"]`).forEach
 function tchk(){const q=qs[qi];if(tri.some(x=>x==null)){$("fb").innerHTML=`<p class="hint">Range d’abord toutes les lettres.</p>`;return}
  let ok=true;q.it.forEach((x,i)=>{const b=document.querySelector(`[data-t="${i}"][data-c="${tri[i]}"]`),g=tri[i]==x[1];if(!g)ok=false;b.classList.add(g?"ok":"ko");if(!g)document.querySelector(`[data-t="${i}"][data-c="${x[1]}"]`).classList.add("ok")});
  fin(ok)}
+function apick(b,c){const q=qs[qi],ok=c==q.ans;document.querySelectorAll(".alq .opt").forEach(x=>{x.disabled=true;if(x.textContent==q.ans)x.classList.add("ok")});if(!ok)b.classList.add("ko");fin(ok)}
 function pick(i){const q=qs[qi],ok=pend[i]==q.o[0];
  document.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(pend[j]==q.o[0])b.classList.add("ok");else if(j==i)b.classList.add("ko")});fin(ok)}
 function selfGrade(st){$("sg").innerHTML=`<p class="hint">Tu avais bien lu ?</p><div class="sgb"><button onclick="sgr(1)">✅ Oui, je l’avais lu</button><button onclick="sgr(0)">❌ Pas encore</button></div>`;$("sg").dataset.n=st.n}
 function sgr(ok){const n=+$("sg").dataset.n;$("sg").innerHTML="";fin(!!ok,ok?(n?"Lu avec "+n+" aide"+(n>1?"s":"")+".":"Lu sans aide."):"Ce mot reviendra dans ta révision du jour.")}
 function fin(ok,msg){const q=qs[qi];
  if(!fait[qi]){fait[qi]=true;if(ok)score++;else miss.push(q);if(kind!="retry")rec(q,ok)}
- let rep="";if(!ok){rep=q.t=="qcm"?q.o[0]:q.t=="ass"?`<span lang="ar" class="ari">${q.ar}</span> (${q.tr.replace(/-/g,"")})`:""}
+ let rep="";if(!ok){rep=q.t=="qcm"?q.o[0]:q.t=="alpha"?`<span lang="ar" class="ari">${q.ans}</span> (${ALPHA[ABC.indexOf(q.ans)][1]})`:q.t=="ass"?`<span lang="ar" class="ari">${q.ar}</span> (${q.tr.replace(/-/g,"")})`:""}
  const lbl=q.t=="lis"?(ok?"✅ ":"📌 "):ok?"✅ Bravo. ":"❌ Pas tout à fait. ";
  $("fb").innerHTML=`<div class="fb ${ok?"ok":"ko"}">${lbl}${rep?"Bonne réponse : "+(q.arO?`<span lang="ar" class="ari">${rep}</span>`:rep)+" ":""}${msg||""}${q.ex?" "+q.ex:""}</div>`+(!ok&&q.t!="lis"?`<p><button onclick="drawQ()">🔄 Réessayer</button></p>`:"");
  $("nx").disabled=false;$("nx").textContent=qi==qs.length-1?"Voir mon score 🎉":"Suivant →";
@@ -120,7 +124,7 @@ function drawEnd(){const p=Math.round(100*score/qs.length),s=p>=90?"🌟🌟🌟
 
 // ---------- Pages outils ----------
 const PAGES={
- lettres(){return `<div class="card"><h3>L’alphabet complet</h3><p>Les 28 lettres dans l’ordre de l’alphabet, avec leurs 4 formes. ⛔ = ne s’attache pas à la lettre suivante. Le premier 🔊 dit le nom de la lettre, le second le mot d’exemple (en darija).</p>${letterCards("ابتثجحخدذرزسشصضطظعغفقكلمنهوي")}</div>`},
+ lettres(){const r=res.lettres;return `<div class="card"><h3>🎧 Entraînement : retrouve la lettre</h3><p>Tu entends le nom d’une lettre et tu la retrouves parmi les 28. 10 questions tirées au hasard, à refaire autant que tu veux.</p><p><button onclick="start()">▶️ Commencer</button>${r!=null?` <span class="hint">Dernier score : ${r} %</span>`:""}</p></div><div class="card"><h3>L’alphabet complet</h3><p>Les 28 lettres dans l’ordre de l’alphabet, avec leurs 4 formes. ⛔ = ne s’attache pas à la lettre suivante. Le premier 🔊 dit le nom de la lettre, le second le mot d’exemple (en darija).</p>${letterCards("ابتثجحخدذرزسشصضطظعغفقكلمنهوي")}</div>`},
  revision(){const m=allQ(),now=Date.now(),ks=Object.keys(SR).filter(k=>m[k]),due=ks.filter(k=>SR[k].d<=now).length,mast=ks.filter(k=>SR[k].b>=5).length;
   const fut=ks.filter(k=>SR[k].d>now).map(k=>SR[k].d).sort((a,b)=>a-b)[0];let nx="";
   if(!due&&fut){const j=Math.max(1,Math.ceil((fut-now)/864e5));nx="Prochaine révision dans "+j+" jour"+(j>1?"s":"")+"."}
