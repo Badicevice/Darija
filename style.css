@@ -149,3 +149,20 @@ button{min-height:44px}
 .snd.on{background:var(--y);border-color:var(--y)}
 .ph .snd{display:flex}
 .lx .snd{margin:0 0 0 8px;min-height:32px;min-width:40px;vertical-align:middle}
+
+.sndx{font-size:.85rem;min-height:36px;height:auto;white-space:normal;padding:6px 12px;gap:6px;line-height:1.25;text-align:left}
+.sndx strong{font-weight:700}
+.tg{width:100%;height:auto;display:block;border-radius:14px;border:1px solid #cfe9da}
+.tgref{max-width:300px;margin:10px auto}
+.tgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:12px 0}
+.tgf{margin:0;background:var(--g5);border:1px solid #cfe9da;border-radius:16px;padding:10px;text-align:center}
+.tgf figcaption{font:700 1.15rem var(--fh);color:var(--g1);margin-bottom:6px}
+.tgf p{font-size:.88rem;margin:8px 0 4px;text-align:left}
+.tgl{list-style:none;padding:0;margin:10px 0;font-size:.9rem;display:grid;gap:6px}
+.tgl li{display:flex;align-items:center;gap:8px}
+.tgl span{flex:0 0 22px;height:22px;border-radius:50%;display:inline-block;box-sizing:border-box}
+.tgl .k1{border:2px dashed #e11d48;background:#e11d4840}
+.tgl .k2{border:2px solid #e11d48;background:#e11d4840 linear-gradient(45deg,transparent 44%,#e11d48 44%,#e11d48 56%,transparent 56%)}
+.tgl .k3{border-radius:0;height:3px;background:#2563eb}
+.tgl .k4{border-radius:0;height:10px;background:repeating-linear-gradient(135deg,#d97706 0 3px,transparent 3px 6px)}
+.tgf figcaption{direction:ltr}.tgf figcaption .ar,.ph .ar{unicode-bidi:isolate}

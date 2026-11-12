@@ -1,8 +1,33 @@
 // ---------- Aides d’écriture du cours ----------
-const AUD={"سلام":1,"واش راك؟":2,"لاباس":3,"الحمد لله":4,"إيه":5,"لالا":6,"بصح":7,"صحا":8,"ش":9,"خ":10,"غ":11,"ق":12,"ح":13,"ع":14,"كتاب":15,"يعطيك الصحة":16,"بلا مزية":17,"الله يخليك":18,"سمحلي":19,"معليش":20,"مرحبا":21,"تفضّل":22,"بالسلامة":23,"إن شاء الله":24,"ما شاء الله":25,"بسم الله":26,"ربي معاك":27,"الله يسهّل":28,"الله يرحمو":29,"مبروك":30,"عيد مبارك":31,"أنا":32,"نتا":33,"نتي":34,"هو":35,"هي":36,"حنا":37,"نتوما":38,"هوما":39,"راني":40,"راك":41,"راكي":42,"راه":43,"راها":44,"رانا":45,"راكم":46,"راهم":47,"واش":48,"شكون":49,"وين":50,"كيفاش":51,"وقتاش":52,"علاش":53,"قداش":54,"ولد":55,"بنت":56,"دار":57,"مدرسة":58,"كبير":59,"صغير":60};
+const AUD={"سلام":1,"واش راك؟":2,"لاباس":3,"الحمد لله":4,"إيه":5,"لالا":6,"بصح":7,"صحا":8,"كتاب":15,"يعطيك الصحة":16,"بلا مزية":17,"الله يخليك":18,"سمحلي":19,"معليش":20,"مرحبا":21,"تفضّل":22,"بالسلامة":23,"إن شاء الله":24,"ما شاء الله":25,"بسم الله":26,"ربي معاك":27,"الله يسهّل":28,"الله يرحمو":29,"مبروك":30,"عيد مبارك":31,"أنا":32,"نتا":33,"نتي":34,"هو":35,"هي":36,"حنا":37,"نتوما":38,"هوما":39,"راني":40,"راك":41,"راكي":42,"راه":43,"راها":44,"رانا":45,"راكم":46,"راهم":47,"واش":48,"شكون":49,"وين":50,"كيفاش":51,"وقتاش":52,"علاش":53,"قداش":54,"ولد":55,"بنت":56,"دار":57,"مدرسة":58,"كبير":59,"صغير":60};
 const AUDT={"es-salamou 3alaykoum":1001,"wa 3alaykoum es-salam":1002,"wach raki ?":1003,"w nta ?":1004,"b-khir":1005,"kteb":1006,"kateb":1007,"baraka llahou fik":1008,"3la walou":1009,"smahli bezzaf":1010,"ma kan walou":1011,"mou machi mouchkil":1012,"mer7ba bik":1013,"tsba7 3la khir":1014,"nchoufek men ba3d":1015,"llah ybarek fik":1016,"sa7a ramdankoum":1017,"3am sa3id":1018,"3ouqbal lik !":1019,"ana sghir":1020,"hiya jmila":1021,"nta kbir":1022,"rani mrid":1023,"3and men":1024,"m3a men":1025,"wayn rah ?":1026,"shkoun hada ?":1027,"wach hada ?":1028,"rajel":1029,"el-ktab":1030,"el-ktab el-kbir":1031,"el-bent el-kbira":1032,"el-dar → ed-dar":1033,"el-chems → ech-chems":1034,"el-trig → et-trig":1035,"el-rajel → er-rajel":1036,"hada weld":1037,"hadik bent":1038,"had el-bent":1039,"wach rak ?":2};
 const SND=(a,r)=>{const n=(a&&AUD[a])||(!a&&r&&AUDT[r]);return n?`<button class="snd" type="button" data-a="${n}" aria-label="Écouter la prononciation">🔊</button>`:""};
 const P=(r,a,f)=>`<div class="ph"><b>${r}</b>${a?`<span class="ar" lang="ar">${a}</span>`:""}${SND(a,r)}<em>${f}</em></div>`;
+// Schémas : coupe de profil de la bouche (visage tourné vers la gauche) pour chaque son nouveau.
+const TGD={
+ ref:{t:"M62 128C56 120 56 113 62 111C76 98 100 92 114 99C126 106 130 124 128 150L70 140Z"},
+ ch:{t:"M62 128C57 118 57 100 63 93C69 85 78 85 87 89C100 93 116 99 122 110C128 122 129 136 128 150L70 140Z",m:[72,82,9],air:1},
+ kh:{t:"M62 128C56 122 56 115 62 113C80 109 100 105 112 97C120 91 128 89 133 97C138 107 134 128 128 150L70 140Z",m:[131,90,9],air:1},
+ gh:{t:"M62 128C56 122 56 115 62 113C80 109 100 105 112 97C120 91 128 89 133 97C138 107 134 128 128 150L70 140Z",m:[131,90,9],air:1,v:1},
+ q:{t:"M62 128C56 122 56 115 62 113C80 110 100 106 112 96C119 88 128 80 135 88C142 99 135 128 128 150L70 140Z",m:[132,87,9],stop:1},
+ h7:{t:"M62 128C56 122 56 115 62 112C80 103 100 99 114 104C130 110 149 117 151 135C152 148 140 155 128 152L70 140Z",m:[154,132,9],air:1},
+ a3:{t:"M62 128C56 122 56 115 62 112C80 103 100 99 114 104C130 110 149 117 151 135C152 148 140 155 128 152L70 140Z",m:[154,132,9],air:1,v:1}
+};
+const TG=(k,lab)=>{const d=TGD[k];let s=`<svg viewBox="0 0 200 190" class="tg" role="img" aria-label="${lab}">`+
+ `<rect width="200" height="190" rx="14" fill="#fffaf3"/>`+
+ `<path d="M200 0L96 0C70 6 58 30 56 52L34 80L50 87L42 96L47 101L47 107L43 113L52 122L46 140C60 160 90 162 110 160L112 190L200 190Z" fill="#f3cfa8" stroke="#b98a5a" stroke-width="1.5"/>`+
+ `<path d="M47 101L58 99C62 88 70 80 84 76C100 72 116 74 127 81C131 84 135 92 136 102C140 97 142 90 143 84C150 86 155 92 156 100L158 178L132 178L128 150L120 132L62 128L56 113L47 107Z" fill="#fff" stroke="#b98a5a" stroke-width="1.5"/>`+
+ `<path d="${d.t}" fill="#f28b8b" stroke="#b84a4a" stroke-width="1.5" stroke-linejoin="round"/>`+
+ `<path d="M51 97L58 97L56 108Z" fill="#fff" stroke="#777"/><path d="M51 119L58 119L56 109Z" fill="#fff" stroke="#777"/>`;
+ if(d.m)s+=`<circle cx="${d.m[0]}" cy="${d.m[1]}" r="${d.m[2]}" fill="#e11d48" fill-opacity=".25" stroke="#e11d48" stroke-width="2"${d.stop?"":' stroke-dasharray="4 3"'}/>`;
+ if(d.stop)s+=`<path d="M${d.m[0]-4} ${d.m[1]-4}l8 8m0-8l-8 8" stroke="#e11d48" stroke-width="2.5" stroke-linecap="round"/>`;
+ if(d.air)s+=`<path d="M40 104H12m8-6l-8 6l8 6" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 97q-5-4-10 0t-10 0M38 111q-5 4-10 0t-10 0" fill="none" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>`;
+ if(d.v)s+=`<path d="M136 168l4-5l4 10l4-10l4 10l3-5" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+ if(k==="ref")s+=`<g font-size="9" font-family="sans-serif" fill="#1f2937"><text x="100" y="66" text-anchor="middle">palais</text><text x="18" y="98" text-anchor="middle">dents</text><path d="M31 97L51 102" stroke="#1f2937" stroke-width=".8"/><text x="150" y="70" text-anchor="middle">luette</text><path d="M148 73L137 98" stroke="#1f2937" stroke-width=".8"/><text x="92" y="118" text-anchor="middle" fill="#7f1d1d" font-weight="bold">langue</text><text x="180" y="140" text-anchor="middle">gorge</text><path d="M170 138L158 136" stroke="#1f2937" stroke-width=".8"/><text x="20" y="130" text-anchor="middle">lèvres</text><path d="M30 123L43 112" stroke="#1f2937" stroke-width=".8"/></g>`;
+ return s+`</svg>`};
+const PX=(r,a,d,ex,fr,id)=>`<div class="ph"><b>${r}</b><span class="ar" lang="ar">${a}</span><em>${d}</em>${id?`<button class="snd sndx" type="button" data-a="${id}" aria-label="Écouter le mot d’exemple ${ex}">🔊 <span>mot d’exemple : <strong>${ex}</strong> (${fr})</span></button>`:`<em>ex. : ${ex} (${fr})</em>`}</div>`;
+const TF=(k,r,a,txt,ex,id)=>`<figure class="tgf"><figcaption>${r} <span class="ar" lang="ar">${a}</span></figcaption>${TG(k,"Position de la langue pour le son "+r)}<p>${txt}</p>${id?`<button class="snd sndx" type="button" data-a="${id}" aria-label="Écouter le mot d’exemple ${ex}">🔊 <span>exemple : <strong>${ex}</strong></span></button>`:""}</figure>`;
+
 const G=(...p)=>`<div class="grid">${p.join("")}</div>`;
 const D=(...l)=>`<div class="dlg">${l.map((x,i)=>`<div class="b ${i%2?"r":""}"><small>${x[0]}</small><b>${x[1]}</b><em>${x[2]}</em></div>`).join("")}</div>`;
 const R=t=>`<div class="tip">💡 <b>À retenir :</b> ${t}</div>`;
@@ -53,9 +78,16 @@ O("Remets en ordre : « Ça va, Dieu merci »",["labas,","el-hamdoulillah"],"lab
 
 {id:"sons",c:0,n:"Prononcer les sons",e:"🗣️",h:Z("lire et prononcer les sons qui n’existent pas en français.")+
 S(1,"Les lettres qui se lisent comme en français",G(P("a, i, ou","","voyelles de base (ou = u)"),P("r","","toujours roulé"),P("s","","toujours un s sourd (jamais z)"),P("g","","toujours dur (comme gare)"),P("w","","comme dans ouate"),P("j","","comme dj")))+
-S(2,"Les sons nouveaux",G(P("ch","ش","comme dans chat : chems (soleil)"),P("kh","خ","comme la jota espagnole : khobz (pain)"),P("gh","غ","r « parisien » : ghali (cher)"),P("q","ق","k au fond de la gorge : qal (il a dit)"),P("7","ح","h soufflé fort : 7ajj (pèlerin)"),P("3","ع","son de gorge serrée : 3ali, 3abd-allah"))+
+S(2,"Les sons nouveaux",`<p>Le bouton 🔊 de chaque carte fait entendre un <b>mot d’exemple</b> qui contient le son, pas la lettre toute seule.</p>`+G(PX("ch","ش","comme dans chat","chems","soleil",9),PX("kh","خ","comme la jota espagnole","khobz","pain",10),PX("gh","غ","r « parisien »","ghali","cher",11),PX("q","ق","k au fond de la gorge","qal","il a dit",12),PX("7","ح","h soufflé fort","7ajj","pèlerin",13),PX("3","ع","son de gorge serrée","3ali","le prénom Ali",14))+
 R("sur Internet et dans les SMS, on écrit <b>7</b> pour ح et <b>3</b> pour ع parce qu’ils ressemblent à ces lettres arabes."))+
-S(3,"La racine : le squelette du mot",`<p>Un mot arabe est construit sur 3 consonnes (la <b>racine</b>). Les voyelles changent le sens.</p>`+G(P("kteb","","il a écrit"),P("ktab","كتاب","livre"),P("kateb","","écrivain"))+R("racine <b>k-t-b</b> = l’idée d’écrire.")),
+S(3,"Où placer la langue ?",`<p>Voici la bouche vue de profil (le visage regarde vers la gauche). Repère d’abord les parties de la bouche :</p><div class="tgref">${TG("ref","Coupe de la bouche : lèvres, dents, palais, luette, langue et gorge")}</div><ul class="tgl"><li><span class="k1"></span><div>rond en pointillé : l’air passe en <b>frottant</b> à cet endroit</div></li><li><span class="k2"></span><div>rond avec une croix : l’air est <b>bloqué</b>, puis relâché d’un coup</div></li><li><span class="k3"></span><div>flèche bleue : on <b>souffle</b></div></li><li><span class="k4"></span><div>zigzag orange : la gorge <b>vibre</b> (on met la voix)</div></li></ul><div class="tgs">`+
+TF("ch","ch","ش","Le bout de la langue monte juste derrière les dents du haut. L’air frotte : « chhh ».","chems",9)+
+TF("kh","kh","خ","L’arrière de la langue monte vers la luette. L’air frotte, sans la voix.","khobz",10)+
+TF("gh","gh","غ","Même position que <b>kh</b>, mais la gorge vibre : on met la voix.","ghali",11)+
+TF("q","q","ق","L’arrière de la langue touche la luette et bloque l’air, puis le lâche d’un coup.","qal",12)+
+TF("h7","7","ح","La racine de la langue recule vers le fond de la gorge. On souffle fort, sans la voix.","7ajj",13)+
+TF("a3","3","ع","Même position que <b>7</b>, mais la gorge vibre : on met la voix.","3ali",14)+`</div>`+R("<b>kh / gh</b> et <b>7 / 3</b> vont par deux : même position de la langue, la seule différence est la voix."))+
+S(4,"La racine : le squelette du mot",`<p>Un mot arabe est construit sur 3 consonnes (la <b>racine</b>). Les voyelles changent le sens.</p>`+G(P("kteb","","il a écrit"),P("ktab","كتاب","livre"),P("kateb","","écrivain"))+R("racine <b>k-t-b</b> = l’idée d’écrire.")),
 q:[Q("Le chiffre « 3 » représente :",["la lettre ع","la lettre ح","un vrai chiffre"],"3 = ع, son de gorge."),
 Q("Le chiffre « 7 » représente :",["la lettre ح","la lettre ع","la lettre ق"],"7 = ح, un h soufflé fort."),
 Q("« kh » se prononce comme :",["la jota espagnole","le ch de chat","le th anglais"],"kh (خ) ≈ jota. Exemple : khobz."),
@@ -856,3 +888,7 @@ futur:[M("Associe chaque ordre à sa traduction",[["kteb !","écris !"],["ro7 !"
 };
 
 Object.keys(EXTRA).forEach(id=>L0.find(l=>l.id==id).q.push(...EXTRA[id]));
+
+// Questions gardées par leçon (une par notion de vocabulaire)
+const QKEEP={"saluer":[2,3,6,9,10,11],"sons":[0,5,6,7,8,9,10,11],"politesse":[0,2,6,8,12,13,15,16],"pronoms":[2,4,5,7,8,9,10,12],"questions":[4,5,6,7,8,11,12],"article":[1,2,4,5,6,7,8,12],"neg":[2,4,6,7,8,9,10,12],"nombres":[1,2,3,6,9,14,15,16],"heure":[3,7,8,10,11,12,13,16],"conj":[4,7,10,11,14,15,16],"famille":[3,6,7,9,10,11,13,16],"emotions":[3,7,8,9,10,11,13,16],"corps":[1,2,3,7,8,13,16,17],"couleurs":[2,5,6,7,8,9,11,16],"animaux":[2,4,5,7,9,13,16,17],"vetements":[1,2,3,4,6,14,16,17],"maison":[1,2,3,5,6,7,12,15],"fruits":[0,2,3,4,5,9,17,20],"aliments":[2,3,4,5,6,7,18,20],"resto":[0,1,2,3,4,7,8,11],"marche":[1,6,7,10,11],"villes":[2,3,4,7,8,9,14,18],"deplacer":[3,5,6,7,8,12,14,16],"meteo":[0,4,7,8,9,10,11,12],"etudes":[0,3,4,5,6,7,12,13],"metiers":[3,5,6,8,9,14,15,16],"loisirs":[1,4,5,6,8,10,14,15],"sante":[0,1,2,3,7,12,13,14],"futur":[1,2,3,4,5,7,13,17],"voyages":[0,1,2,3,4,12,13,14],"telephone":[0,1,3,4,8,12,13,14],"fetes":[0,1,2,4,13,14,15,16],"dialogues":[0,1,2,4,5,6,13,14],"dialogues2":[4,5,7,8,9,10,14,15],"pieges":[3,4,5,6,7,8,14,15]};
+L0.forEach(l=>{const k=QKEEP[l.id];if(k&&l.q)l.q=k.map(i=>l.q[i])});
