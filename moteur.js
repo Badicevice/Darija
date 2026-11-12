@@ -52,6 +52,7 @@ function draw(){menu();const l=L[cur];document.title=lab(l)+" – Darija algéri
   if(l.custom){$("main").innerHTML=`<h2 class="t">${l.e} ${l.n}</h2>`+PAGES[l.id]()+nav(`<button onclick="go(${cur+1})">Suivant →</button>`);if(AFTER[l.id])AFTER[l.id]();return}
   $("main").innerHTML=`<h2 class="t">${chip(l)}${l.e} ${lab(l)}</h2>${l.h}
   ${nav(`<button onclick="start()">🎮 Passer aux activités →</button>`)}
+  ${l.id=="alphabet"?`<div class="card lien"><h3>📖 Envie de vraiment savoir lire ?</h3><p>Le cours <b>Lire l’arabe</b> reprend les lettres une par une, avec les voyelles, des exercices et des aides pour lire de vrais mots.</p><p><a class="btn" href="lire.html">Ouvrir le cours Lire l’arabe →</a></p></div>`:""}
   <p class="foot">ℹ️ Le darija varie d’une région à l’autre : ce cours enseigne l’usage courant, surtout celui d’Alger. Un mot peut se dire autrement ailleurs.</p>`;
  }else if(mode=="quiz")drawQ();else drawEnd();
 }
@@ -97,7 +98,7 @@ function chk(){const q=qs[qi];if(!cho.length)return;const ok=cho.join(" ")==q.w.
 function fin(ok){const q=qs[qi];
  if(!fait[qi]){fait[qi]=true;if(ok)score++;else miss.push(q);if(kind!="retry")rec(q,ok)}
  const rep=q.t=="qcm"?q.o[q.c]:q.t=="ord"?q.w.join(" "):q.p.map(x=>x[0]+" = "+x[1]).join(" ; ");
- $("fb").innerHTML=`<div class="fb ${ok?"ok":"ko"}">${ok?"✅ Bravo ! ":"❌ Pas tout à fait. Bonne réponse : "+rep+". "}${q.ex||""}</div>`+(ok?"":`<p><button onclick="drawQ()">🔄 Réessayer</button></p>`);
+ $("fb").innerHTML=`<div class="fb ${ok?"ok":"ko"}">${ok?"✅ Bravo ! ":"❌ Pas tout à fait. Bonne réponse : "+rep+(/[.?!…]$/.test(rep)?" ":". ")}${q.ex||""}</div>`+(ok?"":`<p><button onclick="drawQ()">🔄 Réessayer</button></p>`);
  $("nx").disabled=false;$("nx").textContent=qi==qs.length-1?"Voir mon score 🎉":"Suivant →";
  document.querySelectorAll("#main .card button").forEach(b=>{if(!b.textContent.includes("Réessayer"))b.disabled=true})}
 function next(){if(qi<qs.length-1){qi++;drawQ()}else{mode="fin";if(kind=="quiz"){res[L[cur].id]=Math.round(100*score/qs.length);sv("dz_res2",res)}scrollTo(0,0);draw()}}
