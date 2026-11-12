@@ -146,3 +146,27 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
  const a=new Audio("audio/"+String(b.dataset.a).padStart(3,"0")+".mp3");SNDP=a;SNDB=b;b.classList.add("on");
  const off=()=>{b.classList.remove("on");if(SNDP===a)SNDP=null};a.onended=off;a.onerror=off;
  const p=a.play();if(p&&p.catch)p.catch(off)});
+
+// ---------- Dialogues : « Écouter tout » et « Mode écho » ----------
+let DLG=null;
+const dlgStop=()=>{if(!DLG)return;DLG.stop=1;clearTimeout(DLG.t);if(DLG.a)DLG.a.pause();
+ DLG.box.querySelectorAll(".b.on,.b.echo").forEach(x=>x.classList.remove("on","echo"));
+ DLG.box.querySelectorAll(".dctl button").forEach(x=>{x.classList.remove("act");x.textContent=x.dataset.l||x.textContent});DLG=null};
+document.addEventListener("click",e=>{
+ if(e.target.closest&&e.target.closest(".snd"))dlgStop();
+ const btn=e.target.closest&&e.target.closest(".dplay,.decho");if(!btn)return;e.preventDefault();
+ const box=btn.closest(".dlg"),echo=btn.classList.contains("decho"),same=DLG&&DLG.box===box&&DLG.echo===echo;
+ dlgStop();if(SNDP){SNDP.pause();SNDP=null}if(SNDB)SNDB.classList.remove("on");
+ if(same)return;
+ const lines=[...box.querySelectorAll(".b[data-a]")];if(!lines.length)return;
+ btn.dataset.l=btn.dataset.l||btn.textContent;btn.textContent="⏹ Arrêter";btn.classList.add("act");
+ const st=DLG={box,echo,stop:0,a:null,t:0};let i=0;
+ const next=()=>{if(st.stop)return;box.querySelectorAll(".b.on,.b.echo").forEach(x=>x.classList.remove("on","echo"));
+  if(i>=lines.length){dlgStop();return}
+  const b=lines[i++],a=new Audio("audio/"+String(b.dataset.a).padStart(3,"0")+".mp3");st.a=a;b.classList.add("on");
+  try{b.scrollIntoView({block:"nearest",behavior:"smooth"})}catch(_){}
+  const done=()=>{if(st.stop)return;b.classList.remove("on");
+   if(echo){b.classList.add("echo");const d=isFinite(a.duration)&&a.duration>0?a.duration:2;st.t=setTimeout(next,Math.round((d*1.3+0.8)*1000))}
+   else st.t=setTimeout(next,450)};
+  a.onended=done;a.onerror=()=>{st.t=setTimeout(next,100)};const p=a.play();if(p&&p.catch)p.catch(()=>{if(!st.stop)dlgStop()})};
+ next()});

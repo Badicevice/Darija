@@ -186,3 +186,15 @@ button{min-height:44px}
 .alv .ar{font-size:2rem;line-height:1.4}.alv em{font-size:.8rem;font-style:normal;color:#555}
 
 .pps{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:6px}.pps .snd{margin:0}
+/* Variantes régionales et variété de référence */
+.var{margin:10px 0 0;padding:8px 12px;border-radius:12px;background:#eef6ff;border:1px dashed #7aa7d9;font-size:.92rem}
+.ref{margin:0 0 14px;padding:10px 14px;border-radius:14px;background:#eef6ff;border:2px solid #b9d4f2;font-size:.95rem;line-height:1.45}
+/* Dialogues audio et mode écho */
+.dctl{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.dctl button{min-height:40px;padding:6px 14px;font-size:.9rem;background:#fff;border:2px solid var(--g3);color:var(--g1);box-shadow:none}
+.dctl button.act{background:var(--y);border-color:var(--y)}
+.dlg .b{position:relative}
+.dlg .b .snd{margin:6px 0 0;min-height:34px}
+.dlg .b.on{outline:3px solid var(--y);outline-offset:1px}
+.dlg .b.echo{outline:3px dashed var(--g3);outline-offset:1px}
+.dlg .b.echo::after{content:"🗣️ À toi de répéter…";display:block;margin-top:6px;font-weight:800;font-size:.85rem;color:var(--g2)}
