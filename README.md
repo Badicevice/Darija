@@ -16,7 +16,7 @@ Un sélecteur en haut de la page permet de passer d’un cours à l’autre. Cha
 
 Le cours principal, basé sur le parler d’Alger. Quand une autre région dit les choses autrement, c’est signalé par « 📍 Variante régionale ».
 
-- 8 chapitres, du niveau débutant à avancé : saluer, compter, la famille, la maison, sortir, la vie quotidienne, etc.
+- 8 chapitres, du niveau A1 au début du B1 (cadre européen CECRL) : saluer, compter, la famille, la maison, sortir, la vie quotidienne, etc.
 - Chaque leçon contient du vocabulaire, des explications de grammaire et des dialogues.
 - Chaque mot est écrit en lettres latines et en arabe, et se prononce avec un bouton 🔊.
 - Dans les dialogues, le **mode écho** fait une pause après chaque réplique pour qu’on la répète.

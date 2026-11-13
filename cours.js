@@ -66,7 +66,7 @@ function bodySVG(){const f="#d9f2e3",s="#0f5132";
  return v+`</svg>`}
 
 const L0=[
-{id:"saluer",c:0,n:"Saluer et prendre des nouvelles",e:"🤝",h:Z("dire bonjour, demander « comment vas-tu ? » et répondre.")+`<div class="ref">🗺️ <b>Quel darija ?</b> Le darija change un peu d’une région à l’autre. Ce cours suit le <b>darija d’Alger</b> (l’algérois), compris dans tout le pays. Quand une autre région dit les choses autrement, c’est signalé par <b>📍 Variante régionale</b>.</div>`+
+{id:"saluer",c:0,n:"Saluer et prendre des nouvelles",e:"🤝",h:Z("dire bonjour, demander « comment vas-tu ? » et répondre.")+`<div class="ref">🗺️ <b>Quel darija ?</b> Le darija change un peu d’une région à l’autre. Ce cours suit le <b>darija d’Alger</b> (l’algérois), compris dans tout le pays. Quand une autre région dit les choses autrement, c’est signalé par <b>📍 Variante régionale</b>.</div><div class="ref">🎓 <b>Les niveaux :</b> chaque chapitre indique son niveau selon le cadre européen (CECRL) : <b>A1</b> pour se présenter et faire face aux situations les plus simples, <b>A2</b> pour la vie de tous les jours (courses, transports, santé), <b>B1</b> pour raconter, prévoir et tenir une vraie conversation. Le cours va du A1 au début du B1.</div>`+
 S(1,"Dire bonjour",G(P("salam","سلام","salut, bonjour"),P("es-salamou 3alaykoum","","la paix sur vous (bonjour)"),P("wa 3alaykoum es-salam","","et sur vous la paix (réponse)")))+
 S(2,"Demander des nouvelles",G(P("wach rak ?","واش راك؟","comment vas-tu ? (à un homme)"),P("wach raki ?","","comment vas-tu ? (à une femme)"),P("w nta ?","","et toi ?"))+
 G(P("labas","لاباس","ça va, pas mal"),P("el-hamdoulillah","الحمد لله","Dieu merci, bien"),P("b-khir","","bien")))+
