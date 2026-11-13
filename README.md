@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.svg" alt="Logo Darija" width="140"></p>
+
 # Darija
 
 Site gratuit pour apprendre l’arabe algérien (darija) quand on parle français.
@@ -48,7 +50,8 @@ Le site est entièrement statique : du HTML, du CSS et du JavaScript, sans frame
 | `index.html`, `cours.js`, `moteur.js` | Cours de darija : contenu des leçons et moteur (navigation, exercices, révision) |
 | `lire.html`, `lire.js` | Cours « Lire l’arabe » |
 | `style.css` | Style commun aux deux cours |
-| `sw.js`, `manifest.json`, `icon*` | Application installable et fonctionnement hors ligne |
+| `logo.svg`, `icon*` | Logo (bulle de dialogue avec la lettre د) et icônes de l’application |
+| `sw.js`, `manifest.json` | Application installable et fonctionnement hors ligne |
 | `audio/` | Environ 1 000 prononciations en MP3, plus les mêmes regroupées en 16 paquets `.bin` |
 | `fonts/` | Police Noto Naskh Arabic, pour afficher correctement les voyelles arabes |
 

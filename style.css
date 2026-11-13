@@ -265,3 +265,4 @@ a.btn{display:inline-block;font:700 1rem var(--fh);padding:10px 18px;border-radi
 .alq{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;direction:rtl;margin:8px 0}.alq .opt{margin:0;padding:6px 0;text-align:center;font:1.8rem/1.4 var(--fa);min-height:52px}
 @media(max-width:820px){.alq{grid-template-columns:repeat(4,1fr)}}
 .lk28{min-height:36px;padding:6px 14px;font-size:.9rem;background:#fff;border:2px solid var(--g3);box-shadow:none}
+.top h1 .lg{height:1.15em;width:auto;vertical-align:-.18em;margin-right:8px;background:#f7f3ea;border-radius:8px;padding:3px}
