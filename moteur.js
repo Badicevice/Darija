@@ -1,5 +1,5 @@
 // ===== Moteur du cours : navigation, quiz, révision, lexique =====
-const CH=[["🌱","Premiers pas","Débutant"],["🔢","Compter, le temps et les verbes","Débutant"],["👤","Moi et les autres","Débutant"],["🎨","Décrire le monde","Débutant"],["🍽️","La maison et la table","Intermédiaire"],["🏙️","Sortir et acheter","Intermédiaire"],["🌤️","Vie quotidienne","Intermédiaire"],["🚀","Aller plus loin","Avancé"]];
+const CH=[["🌱","Premiers pas","A1"],["🔢","Compter, le temps et les verbes","A1"],["👤","Moi et les autres","A1"],["🎨","Décrire le monde","A2"],["🍽️","La maison et la table","A2"],["🏙️","Sortir et acheter","A2"],["🌤️","Vie quotidienne","A2"],["🚀","Aller plus loin","B1"]];
 const L=[];
 CH.forEach((_,c)=>{L0.filter(l=>l.c===c).forEach(l=>L.push(l));
  L.push({id:"mini"+c,c,mini:1,e:"🎯",n:"Mini-bilan : "+CH[c][1],q:[],h:`<div class="card"><div class="big">🎯</div><h3>Mini-bilan du chapitre ${c+1}</h3><p>8 questions tirées au hasard dans les leçons de ce chapitre.</p></div>`})});
@@ -16,7 +16,7 @@ const nrm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 const lab=l=>(l.no?"Leçon "+l.no+" : ":"")+l.n;
-const chip=l=>l.c!=null?`<div class="chip">${CH[l.c][0]} Chapitre ${l.c+1} · ${CH[l.c][1]} · ${CH[l.c][2]}</div><br>`:"";
+const chip=l=>l.c!=null?`<div class="chip">${CH[l.c][0]} Chapitre ${l.c+1} · ${CH[l.c][1]} · <abbr title="Niveau du Cadre européen commun de référence pour les langues (CECRL)">Niveau ${CH[l.c][2]}</abbr></div><br>`:"";
 const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return (h>>>0).toString(36)};
 const qkey=q=>hash(q.q+"|"+(q.t=="qcm"?q.o[q.c]:q.t=="ord"?q.w.join(" "):q.p.map(x=>x.join("=")).join(";")));
 let QMAP=null;
@@ -37,7 +37,7 @@ function menu(){let h="",last=null;const du=dueKeys().length;
  L.forEach((l,i)=>{const g=l.c!=null?"c"+l.c:l.grp;
   if(g!==last){last=g;
    if(l.c!=null){const gr=L.filter(x=>x.c===l.c),d=gr.filter(x=>res[x.id]!=null).length;
-    h+=`<div class="ch"><span>${CH[l.c][0]} Chapitre ${l.c+1} · ${CH[l.c][1]}</span><b>${d}/${gr.length}</b></div>`}
+    h+=`<div class="ch"><span>${CH[l.c][0]} Chapitre ${l.c+1} · ${CH[l.c][1]} · ${CH[l.c][2]}</span><b>${d}/${gr.length}</b></div>`}
    else h+=`<div class="ch"><span>${l.grp=="Outils"?"🧰":"🏆"} ${l.grp}</span></div>`}
   const badge=l.id=="revision"&&du?`<span class="sc">${du}</span>`:res[l.id]!=null?`<span class="sc">✓ ${res[l.id]}%</span>`:"";
   h+=`<button class="${i==cur?"on":""}"${i==cur?' aria-current="page"':""} onclick="go(${i})"><span>${l.e}</span><span class="lt">${l.no?l.no+". ":""}${l.n}</span>${badge}</button>`});
